@@ -1,0 +1,21 @@
+{
+  "name": "YourAppName",
+  "version": "0.0.0",
+  "homepage": "YourAppHomepage",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "dist/vendor",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "~2.0.3",
+    "raphael": "~2.1.2",
+    "fabric": "~1.4.0",
+    "foundation": "~5.0.2",
+    "raphael.export": "*"
+  }
+}

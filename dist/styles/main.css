@@ -1,0 +1,40 @@
+/*** MAIN SCSS FILE ***/
+html, body {
+  height: 100%; }
+
+#drawing-board {
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -250px;
+  margin-top: -250px;
+  border: 5px solid black;
+  z-index: 15; }
+  #drawing-board svg {
+    width: 490px;
+    height: 490px; }
+
+#pattern-canvas {
+  display: none;
+  width: 490px;
+  height: 490px; }
+
+#pattern-display {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  opacity: 0.6; }
+
+#drawing-board-interface {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 200px;
+  z-index: 10; }
+  #drawing-board-interface button {
+    display: block;
+    width: 100%;
+    margin-bottom: 2px; }
