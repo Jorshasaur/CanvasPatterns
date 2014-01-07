@@ -3,6 +3,9 @@ $(document).ready ->
 	@pattern_display = new PatternDisplay()	
 	$("#pattern-display").attr("width", $(window).width()).attr("height", $(window).height())
 
+	$(document).on "refreshPattern", =>
+		updatePattern()
+
 	updatePattern = =>
 		svg = @drawing_board.export()
 		@pattern_display.drawPattern svg

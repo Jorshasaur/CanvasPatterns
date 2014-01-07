@@ -7,6 +7,9 @@
     this.drawing_board = new DrawingBoard();
     this.pattern_display = new PatternDisplay();
     $("#pattern-display").attr("width", $(window).width()).attr("height", $(window).height());
+    $(document).on("refreshPattern", function() {
+      return updatePattern();
+    });
     updatePattern = function() {
       var svg;
       svg = _this.drawing_board["export"]();
@@ -55,7 +58,8 @@
       y = this.range(0, 500);
       circle = this.paper.circle(x, y, radius);
       circle.attr("fill", this.randomHex());
-      return circle.attr("stroke", this.randomHex());
+      circle.attr("stroke", "none");
+      return circle.drag(this.moveCircle, this.startCircle, this.up);
     };
 
     DrawingBoard.prototype.addRectangle = function() {
@@ -65,7 +69,38 @@
       y = this.range(0, 500);
       rect = this.paper.rect(x, y, size, size);
       rect.attr("fill", this.randomHex());
-      return rect.attr("stroke", this.randomHex());
+      rect.attr("stroke", "none");
+      return rect.drag(this.move, this.start, this.up);
+    };
+
+    DrawingBoard.prototype.startCircle = function() {
+      this.ox = this.attr("cx");
+      return this.oy = this.attr("cy");
+    };
+
+    DrawingBoard.prototype.moveCircle = function(dx, dy) {
+      return this.attr({
+        cx: this.ox + dx,
+        cy: this.oy + dy
+      });
+    };
+
+    DrawingBoard.prototype.start = function() {
+      this.ox = this.attr("x");
+      return this.oy = this.attr("y");
+    };
+
+    DrawingBoard.prototype.up = function() {
+      return $.event.trigger({
+        type: "refreshPattern"
+      });
+    };
+
+    DrawingBoard.prototype.move = function(dx, dy) {
+      return this.attr({
+        x: this.ox + dx,
+        y: this.oy + dy
+      });
     };
 
     DrawingBoard.prototype.range = function(lower, upper) {

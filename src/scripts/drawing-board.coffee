@@ -16,7 +16,8 @@ class DrawingBoard
 
 		circle = @paper.circle x, y, radius
 		circle.attr "fill", @randomHex()
-		circle.attr "stroke", @randomHex()
+		circle.attr "stroke", "none"
+		circle.drag @moveCircle, @startCircle, @up
 
 	addRectangle: ->
 		size = @range 5, 50
@@ -25,7 +26,26 @@ class DrawingBoard
 
 		rect = @paper.rect(x, y, size, size)
 		rect.attr "fill", @randomHex()
-		rect.attr "stroke", @randomHex()
+		rect.attr "stroke", "none"
+		rect.drag @move, @start, @up
+
+	startCircle: ->
+		@ox = @attr "cx"
+		@oy = @attr "cy"
+
+	moveCircle: (dx, dy)->
+		@attr({cx: @ox + dx, cy: @oy + dy })
+
+	start: ->
+		@ox = @attr "x"
+		@oy = @attr "y"
+
+	up: ->
+		$.event.trigger
+			type: "refreshPattern"
+
+	move: (dx, dy)->
+		@attr({x: @ox + dx, y: @oy + dy })		
 
 	range: (lower, upper)->
 		range = upper - lower
