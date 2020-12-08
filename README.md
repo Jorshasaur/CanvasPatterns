@@ -1,10 +1,10 @@
-##About
+## About
 
 This prototype is to test the architecture of a vector drawing tool, that allows users to create patterns ready for print.
 
 Since it's really important to see the pattern in repetition, to get an idea how it will look on something physical, this project is to test vector editing with rasterized displaying.
 
-##Architecture
+## Architecture
 
 ![Prototype Architecture](architecture.png "The Prototype Architecture")
 
@@ -15,7 +15,7 @@ That exported SVG is rendered into a hidden canvas tag, which will be used as th
 Finally, a large browser window sized canvas sits behind everything else.  It samples the pixel data from the hidden canvas and draws a repeating pattern.
 
 
-##Installation Instructions
+## Installation Instructions
 
 1. ```npm install```
 
